@@ -1,7 +1,7 @@
 # email-canberra
-email-canberra is project to help members of the community contact politicians and alert them about issues which require there attention. 
+email-canberra is project to help members of the community contact politicians and alert them about issues which require there attention.
 The application has three main parts, a RESTful api, a webapp/website and a database for storing the politicians contact details.
-You can install and run the application locally by on your commanndline typing
+You can install and run the application locally by on your commandline typing
 * git clone https://github.com/Sag0Sag0/email-canberra
 * cd email-canberra
 * bundle install

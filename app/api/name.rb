@@ -1,4 +1,3 @@
-# maybe put all methods in a individual class per module
 def get_name(path)
   name = false
 
