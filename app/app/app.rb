@@ -12,11 +12,12 @@ end
 post '/gmail' do
   email = params[:email]
   password = params[:password]
+  to = params[:to]
   message = params[:message]
 
   Pony.mail({
     :from => email,
-    :to => "laurence.stevens@carey.com.au",
+    :to => to,
     :subject => "Some Subject",
     :body => message,
     :via => :smtp,
@@ -30,5 +31,7 @@ post '/gmail' do
       :domain               => "localhost.localdomain"
     }
   })
+
+  erb :gmail
 
 end
