@@ -3,7 +3,6 @@ get '/gmail' do
 end
 
 post '/gmail' do
-  car = params[:cars]
   email = params[:email]
   password = params[:password]
   to = params[:to]
