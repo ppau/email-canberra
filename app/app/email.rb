@@ -1,7 +1,32 @@
 
 def get_emails(input)
-  get = Curl.get("http://localhost:#{$port}/api/email/#{input}")
+  port = settings.port
+  get = Curl.get("http://localhost:#{port}/api/email/#{input}")
   return get.body_str
+end
+
+def send_emails(input)
+  emails = input
+
+  emails.each do |item|
+    Pony.mail({
+      :from => $email_address,
+      :to => item,
+      :subject => $subject,
+      :body => $message,
+      :via => :smtp,
+      :via_options => {
+        :address              => 'smtp.gmail.com',
+        :port                 => '587',
+        :enable_starttls_auto => true,
+        :user_name            => $email_address,
+        :password             => $password,
+        :authentication       => :plain,
+        :domain               => "localhost.localdomain"
+      }
+    })
+  end
+
 end
 
 get '/gmail' do
@@ -9,37 +34,17 @@ get '/gmail' do
 end
 
 post '/gmail' do
-  email = params[:email]
-  password = params[:password]
+  $email_address = params[:email_address]
+  $password = params[:password]
+  $subject = params[:subject]
+  $message = params[:message]
+
   to = params[:to]
-  subject = params[:subject]
-  message = params[:message]
-
   to = get_emails(to)
-  emails = []
   to = JSON.parse(to)
-  puts emails
-  emails = to.split(" ")
-  puts emails
 
+  send_emails(to)
 
-  Pony.mail({
-    :from => email,
-    :to => to,
-    :subject => subject,
-    :body => message,
-    :via => :smtp,
-    :via_options => {
-      :address              => 'smtp.gmail.com',
-      :port                 => '587',
-      :enable_starttls_auto => true,
-      :user_name            => email,
-      :password             => password,
-      :authentication       => :plain,
-      :domain               => "localhost.localdomain"
-    }
-  })
-
-  erb :gmail
+  erb :main
 
 end
