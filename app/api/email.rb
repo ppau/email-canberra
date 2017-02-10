@@ -80,7 +80,7 @@ get '/api/email/federal' do
   result.to_json
 end
 
-get '/api/name/stateVIC' do
+get '/api/email/stateVIC' do
   result = []
   $array.each do |item|
     output = parse_attribute_e(item, 'level = "stateVIC"')
@@ -89,7 +89,7 @@ get '/api/name/stateVIC' do
   result.to_json
 end
 
-get '/api/name/stateNSW' do
+get '/api/email/stateNSW' do
   result = []
   $array.each do |item|
     output = parse_attribute_e(item, 'level = "stateNSW"')
@@ -98,7 +98,7 @@ get '/api/name/stateNSW' do
   result.to_json
 end
 
-get '/api/name/stateQLD' do
+get '/api/email/stateQLD' do
   result = []
   $array.each do |item|
     output = parse_attribute_e(item, 'level = "stateQLD"')
@@ -107,7 +107,7 @@ get '/api/name/stateQLD' do
   result.to_json
 end
 
-get '/api/name/stateSA' do
+get '/api/email/stateSA' do
   result = []
   $array.each do |item|
     output = parse_attribute_e(item, 'level = "stateSA"')
@@ -116,7 +116,7 @@ get '/api/name/stateSA' do
   result.to_json
 end
 
-get '/api/name/stateTAS' do
+get '/api/email/stateTAS' do
   result = []
   $array.each do |item|
     output = parse_attribute_e(item, 'level = "stateTAS"')
@@ -125,7 +125,7 @@ get '/api/name/stateTAS' do
   result.to_json
 end
 
-get '/api/name/stateWA' do
+get '/api/email/stateWA' do
   result = []
   $array.each do |item|
     output = parse_attribute_e(item, 'level = "stateWA"')

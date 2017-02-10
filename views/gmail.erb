@@ -1,9 +1,28 @@
 
 <form action="/gmail" method="post">
-<input name="email" type="email">Email address</input>
+<input name="email" type="email">Gmail address</input>
 <input name="password" type="password">Password</input>
-<input name="to">To </input>
+<select name="to">
+  <option value="liberal">All Liberal politicians</option>
+  <option value="labour">All Labour politicians</option>
+  <option value="greens">All Green's politicians</option>
+  <option value="independants">All Independant politicians</option>
+  <option value="federal">All Federal politicians</option>
+  <option value="stateVIC">All VIC politicians </option>
+  <option value="stateNSW">All NSW politiciansant politicians</option>
+  <option value="stateQLD">All QLD politicians</option>
+  <option value="stateSA">All SA politicians</option>
+  <option value="stateTAS">All TAS politicians</option>
+  <option value="stateWA">All WA politicians</option>
+</select>
 <input name="subject">Subject</input>
 <input name="message">Message</input>
 <input name="send" type="submit"></input>
 </form>
+
+<style>
+form {
+margin: 0 auto;
+width:250px;
+}
+</style>
