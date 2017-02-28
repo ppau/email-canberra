@@ -28,108 +28,31 @@ def parse_attribute_e(path, regular_str)
 end
 
 get '/api/email' do
-  member_emails = []
-  $array.each do |item|
-    member_emails.push(get_email(item))
-  end
-  member_emails.to_json
-end
-
-get '/api/email/liberal' do
   result = []
   $array.each do |item|
-    output = parse_attribute_e(item, 'party = "liberal"')
-    result.push(output)
+    result.push(get_email(item))
   end
   result.to_json
 end
 
-get '/api/email/labour' do
+get '/api/email/:input' do
   result = []
-  $array.each do |item|
-    output = parse_attribute_e(item, 'party = "labour"')
-    result.push(output)
-  end
-  result.to_json
-end
+  input = params[:input]
 
-get '/api/email/greens' do
-  result = []
-  $array.each do |item|
-    output = parse_attribute_e(item, 'party = "greens"')
-    result.push(output)
+  if input =~ /liberal|labour|greens|independant|onenation/
+    $array.each do |item|
+      # Horrible string is done to stop problems with duplication of output.
+      result.push(parse_attribute_e(item, "\"#{input}"))
+    end
   end
-  result.to_json
-end
 
-get '/api/email/independant' do
-  result = []
-  $array.each do |item|
-    output = parse_attribute_e(item, 'party = "independant"')
-    result.push(output)
+  if input =~ /federal|statVIC|stateSA|stateWA|stateNSW|stateQLD|stateTAS/
+    $array.each do |item|
+      # Horrible string is done to stop problems with duplication of output.
+      output = parse_attribute_e(item, "\"#{input}")
+      result.push(output)
+    end
   end
-  result.to_json
-end
 
-get '/api/email/federal' do
-  result = []
-  $array.each do |item|
-    output = parse_attribute_e(item, 'level = "federal"')
-    result.push(output)
-  end
-  result.to_json
-end
-
-get '/api/email/stateVIC' do
-  result = []
-  $array.each do |item|
-    output = parse_attribute_e(item, 'level = "stateVIC"')
-    result.push(output)
-  end
-  result.to_json
-end
-
-get '/api/email/stateNSW' do
-  result = []
-  $array.each do |item|
-    output = parse_attribute_e(item, 'level = "stateNSW"')
-    result.push(output)
-  end
-  result.to_json
-end
-
-get '/api/email/stateQLD' do
-  result = []
-  $array.each do |item|
-    output = parse_attribute_e(item, 'level = "stateQLD"')
-    result.push(output)
-  end
-  result.to_json
-end
-
-get '/api/email/stateSA' do
-  result = []
-  $array.each do |item|
-    output = parse_attribute_e(item, 'level = "stateSA"')
-    result.push(output)
-  end
-  result.to_json
-end
-
-get '/api/email/stateTAS' do
-  result = []
-  $array.each do |item|
-    output = parse_attribute_e(item, 'level = "stateTAS"')
-    result.push(output)
-  end
-  result.to_json
-end
-
-get '/api/email/stateWA' do
-  result = []
-  $array.each do |item|
-    output = parse_attribute_e(item, 'level = "stateWA"')
-    result.push(output)
-  end
   result.to_json
 end

@@ -1,5 +1,4 @@
 # gems
-require "bundler/setup"
 require "pony"
 require "json"
 require "sinatra"
@@ -14,6 +13,6 @@ if File.foreach("config.ini").grep(/api = true/)
 end
 
 if File.foreach("config.ini").grep(/app = true/)
-  require "./app/app/app.rb"
+  require "./app/site/app.rb"
   puts "Starting app"
 end
