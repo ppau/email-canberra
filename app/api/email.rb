@@ -7,7 +7,7 @@ def get_email(path)
     end
   end
 
-  if email != false
+  if email != false or nil
     return email
   end
 end
@@ -21,7 +21,7 @@ def parse_attribute_e(path, regular_str)
     end
   end
 
-  if output != nil or []
+  if output != nil or [] or false
     return output
   end
 
@@ -48,7 +48,6 @@ get '/api/email/:input' do
 
   if input =~ /federal|statVIC|stateSA|stateWA|stateNSW|stateQLD|stateTAS/
     $array.each do |item|
-      # Horrible string is done to stop problems with duplication of output.
       output = parse_attribute_e(item, "\"#{input}")
       result.push(output)
     end

@@ -7,14 +7,12 @@ def get_name(path)
     end
   end
 
-  if name != false
+  if name != false or nil
     puts name
     return name
   end
 end
 
-# changing parse_for_attribute's name between modules
-# fixes bug where modules which call it all get the same output
 def parse_attribute_n(path, regular_str)
   output = []
 
@@ -24,7 +22,7 @@ def parse_attribute_n(path, regular_str)
     end
   end
 
-  if output != nil or []
+  if output != nil or [] or false
     return output
   end
 
@@ -51,7 +49,6 @@ get '/api/name/:input' do
 
   if input =~ /federal|statVIC|stateSA|stateWA|stateNSW|stateQLD|stateTAS/
     $array.each do |item|
-      # Horrible string is done to stop problems with duplication of output.
       output = parse_attribute_n(item, "\"#{input}")
       result.push(output)
     end

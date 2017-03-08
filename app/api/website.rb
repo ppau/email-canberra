@@ -7,7 +7,7 @@ def get_website(path)
     end
   end
 
-  if website != false
+  if website != false or nil
     return website
   end
 end
@@ -21,7 +21,7 @@ def parse_attribute_w(path, regular_str)
     end
   end
 
-  if output != nil or []
+  if output != nil or [] or false
     return output
   end
 
@@ -48,7 +48,6 @@ get '/api/website/:input' do
 
   if input =~ /federal|statVIC|stateSA|stateWA|stateNSW|stateQLD|stateTAS/
     $array.each do |item|
-      # Horrible string is done to stop problems with duplication of output.
       output = parse_attribute_w(item, "\"#{input}")
       result.push(output)
     end
